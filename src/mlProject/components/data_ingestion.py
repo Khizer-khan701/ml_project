@@ -5,6 +5,7 @@ from src.mlProject.exception import CustomException
 from src.mlProject.logger import logging
 from src.mlProject.utils import read_sql_data
 from sklearn.model_selection import train_test_split
+import pandas as pd
 
 from dataclasses import dataclass
 
@@ -20,7 +21,7 @@ class DataIngestion:
 
     def initiate_data_ingestion(self):
         try:
-            df=read_sql_data()
+            df=pd.read_csv(os.path.join("notebook/data","raw.csv"))
             logging.info("reading from the database")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
